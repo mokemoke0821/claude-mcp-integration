@@ -1,0 +1,111 @@
+name: AI Assistant (Claude Alternative)
+
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+  pull_request_review_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  ai-respond:
+    if: contains(github.event.comment.body || github.event.issue.body || github.event.pull_request.body, '@claude')
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: AI Response
+      uses: actions/github-script@v7
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      with:
+        script: |
+          const { context } = require('@actions/github');
+          
+          // メンション内容を取得
+          let mentionContent = '';
+          let issueNumber = null;
+          let isPR = false;
+          
+          if (context.eventName === 'issue_comment') {
+            mentionContent = context.payload.comment.body;
+            issueNumber = context.payload.issue.number;
+            isPR = !!context.payload.issue.pull_request;
+          } else if (context.eventName === 'issues') {
+            mentionContent = context.payload.issue.body;
+            issueNumber = context.payload.issue.number;
+          } else if (context.eventName === 'pull_request') {
+            mentionContent = context.payload.pull_request.body;
+            issueNumber = context.payload.pull_request.number;
+            isPR = true;
+          }
+          
+          // @claudeメンションを削除
+          const userQuery = mentionContent.replace(/@claude\s*/gi, '').trim();
+          
+          // OpenAI API呼び出し（簡易実装）
+          const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              model: 'gpt-4',
+              messages: [
+                {
+                  role: 'system',
+                  content: `あなたはGitHubリポジトリのAIアシスタントです。
+                  このリポジトリはClaude MCP Server統合プロジェクトです。
+                  - 日本語で応答してください
+                  - 技術的な質問に詳しく答えてください
+                  - コードレビューや改善提案を行ってください`
+                },
+                {
+                  role: 'user',
+                  content: userQuery
+                }
+              ],
+              max_tokens: 1000,
+              temperature: 0.7
+            })
+          });
+          
+          const data = await response.json();
+          const aiResponse = data.choices[0].message.content;
+          
+          // GitHubにコメントを投稿
+          const comment = `## 🤖 AI Assistant Response\n\n${aiResponse}\n\n---\n*このメッセージはAIアシスタントによって自動生成されました*`;
+          
+          if (isPR) {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: comment
+            });
+          } else {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: comment
+            });
+          }
+          
+          console.log('AI response posted successfully!'); 
