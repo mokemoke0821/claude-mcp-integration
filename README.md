@@ -59,3 +59,35 @@ npm run sync test
 - Claude Code未検出 → インストール確認
 - GitHub認証エラー → Secrets設定確認
 - 同期エラー → `npm run sync` 再実行 
+
+# 🚀 Claude MCP Server Integration
+
+Claude Desktop App用のMCP（Model Context Protocol）サーバー統合プロジェクト
+
+## 📊 プロジェクト統計
+- **ファイル数**: 174
+- **コード行数**: 51,135
+- **統合済みMCPサーバー**: 3
+
+## ✅ 統合済みMCPサーバー
+1. **filesystem** - ファイルシステム操作（npx経由）
+2. **enhanced-development-commander** - 開発支援ツール
+3. **enhanced-file-commander** - ファイル管理ツール
+
+## 🔧 主な機能
+- 完全自動化されたGitHub Actions CI/CD
+- Claude Desktop App設定の最適化
+- エラー診断ツール完備
+- @claudeメンション対応（Claude GitHub App必要）
+
+## 📝 セットアップ
+1. リポジトリをクローン
+2. `npm install` 実行
+3. MCP設定ファイルを適用
+
+## ⚙️ GitHub Actions
+- **自動テスト**: プッシュ時に自動実行
+- **Claude統合**: @claudeメンションで自動応答
+
+---
+*最終更新: 2025-05-31 - GitHub Actions統合完了* 🎉 
