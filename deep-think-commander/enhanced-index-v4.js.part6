@@ -1,0 +1,74 @@
+
+          {
+            name: 'strategicThinkingChain',
+            description: '戦略的思考プロセスを段階的に実行します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                strategicTopic: {
+                  type: 'string',
+                  description: '戦略を検討するトピック'
+                }
+              },
+              required: ['strategicTopic']
+            }
+          },
+          {
+            name: 'creativeThinkingChain',
+            description: '創造的思考プロセスを段階的に実行します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                innovationChallenge: {
+                  type: 'string',
+                  description: '創造的に取り組む課題'
+                }
+              },
+              required: ['innovationChallenge']
+            }
+          },
+          {
+            name: 'criticalThinkingChain',
+            description: '批判的思考プロセスを段階的に実行します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                claim: {
+                  type: 'string',
+                  description: '批判的に評価する主張'
+                }
+              },
+              required: ['claim']
+            }
+          },
+        ],
+      };
+    });
+
+    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+      const sessionId = request?.meta?.sessionId;
+      const toolName = request.params.name;
+      const args = request.params.arguments;
+      
+      debug.debug(`ツール "${toolName}" の実行リクエストを受信`, { sessionId, args });
+      
+      try {
+        let result;
+        
+        // 会話文脈がない場合は初期化
+        if (!this.conversationContext.has(sessionId)) {
+          this.conversationContext.set(sessionId, {
+            lastMessages: [],
+            toolUsage: {}
+          });
+        }
+        
+        // ツール実行履歴を更新
+        const context = this.conversationContext.get(sessionId);
+        if (!context.toolUsage[toolName]) {
+          context.toolUsage[toolName] = [];
+        }
+        context.toolUsage[toolName].push({
+          timestamp: new Date(),
+          args: args
+        });

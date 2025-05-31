@@ -1,0 +1,79 @@
+
+
+    // ツール一覧ハンドラー
+    this.server.setRequestHandler(ListToolsRequestSchema, async () => {
+      debug.debug('ツール一覧リクエストを受信');
+      
+      return {
+        tools: [
+          // 基本的な思考ツール
+          {
+            name: 'analyze',
+            description: 'テーマを分析し仮説を生成します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                theme: {
+                  type: 'string',
+                  description: '分析対象のテーマ'
+                }
+              },
+              required: ['theme']
+            }
+          },
+          {
+            name: 'counter',
+            description: '仮説に対する反証を検討します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                hypothesis: {
+                  type: 'string',
+                  description: '反証を検討する仮説'
+                }
+              },
+              required: ['hypothesis']
+            }
+          },
+          {
+            name: 'perspective',
+            description: '代替視点から分析を行います',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                theme: {
+                  type: 'string',
+                  description: '分析対象のテーマ'
+                }
+              },
+              required: ['theme']
+            }
+          },
+          {
+            name: 'decompose',
+            description: 'テーマや問題を構成要素に分解します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                theme: {
+                  type: 'string',
+                  description: '分解する対象のテーマや問題'
+                }
+              },
+              required: ['theme']
+            }
+          },
+          {
+            name: 'generateHypotheses',
+            description: '体系的に複数の仮説を生成します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                theme: {
+                  type: 'string',
+                  description: '仮説を生成するテーマ'
+                }
+              },
+              required: ['theme']
+            }
+          },

@@ -1,0 +1,63 @@
+{
+  "globalShortcut": "Alt+C",
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\\\Users\\\\81902\\\\OneDrive\\\\Documents\\\\Cline"
+      ],
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@executeautomation/playwright-mcp-server"
+      ],
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "enhanced_file_commander": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/enhanced-file-commander/src/simple-server.js"
+      ],
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "powershell-commander": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/powershell-commander/src/index.js"
+      ],
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "deep_think": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/deep-think-commander/enhanced-index.js"
+      ],
+      "env": {
+        "DEBUG": "deep-think:*",
+        "NODE_ENV": "production"
+      },
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "enhanced_development_commander": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/enhanced-development-commander/build/index.js"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "autoStart": true,
+      "restartOnFailure": true
+    }
+  }
+}

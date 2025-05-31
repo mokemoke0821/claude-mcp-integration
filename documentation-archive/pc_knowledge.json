@@ -1,0 +1,196 @@
+{
+  "pc_info": {
+    "generated_date": "2025-05-28",
+    "system": {
+      "os": {
+        "name": "Ubuntu (WSL2)",
+        "version": "24.04.2 LTS (Noble Numbat)",
+        "architecture": "x86_64",
+        "kernel": "5.15.167.4-microsoft-standard-WSL2",
+        "wsl_version": "2.4.11.0"
+      },
+      "cpu": {
+        "model": "Intel(R) N100",
+        "cores": "4",
+        "threads": "4",
+        "sockets": "1",
+        "architecture": "x86_64"
+      },
+      "memory": {
+        "total": "7.7Gi",
+        "available": "6.7Gi",
+        "swap": "2.0Gi"
+      },
+      "storage": [
+        {
+          "drive": "/dev/sdc",
+          "type": "WSL filesystem",
+          "size": "1007G",
+          "used": "2.7G",
+          "free": "954G",
+          "mount": "/"
+        },
+        {
+          "drive": "C:\\",
+          "type": "Windows drive",
+          "size": "476G",
+          "used": "390G",
+          "free": "87G",
+          "mount": "/mnt/c"
+        }
+      ],
+      "gpu": {
+        "model": "Not detected in WSL environment",
+        "memory": "N/A"
+      }
+    },
+    "software": {
+      "development": [
+        {
+          "name": "Git",
+          "version": "2.43.0",
+          "path": "/usr/bin/git"
+        },
+        {
+          "name": "GCC",
+          "version": "13.3.0",
+          "path": "/usr/bin/gcc"
+        },
+        {
+          "name": "VS Code",
+          "version": "Available in Windows",
+          "path": "/mnt/c/Users/81902/AppData/Local/Programs/Microsoft VS Code/bin"
+        },
+        {
+          "name": "Cursor",
+          "version": "Available in Windows",
+          "path": "/mnt/c/Users/81902/AppData/Local/Programs/cursor/resources/app/bin"
+        }
+      ],
+      "languages": [
+        {
+          "name": "Python",
+          "version": "3.12.3",
+          "package_manager": "pip (not installed)"
+        },
+        {
+          "name": "Node.js",
+          "version": "20.19.0",
+          "package_manager": "npm 11.2.0"
+        },
+        {
+          "name": "Java",
+          "version": "Not installed",
+          "package_manager": "N/A"
+        },
+        {
+          "name": "Go",
+          "version": "Not installed",
+          "package_manager": "N/A"
+        },
+        {
+          "name": "Rust",
+          "version": "Not installed",
+          "package_manager": "N/A"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Docker",
+          "version": "Available in Windows",
+          "purpose": "Container management"
+        },
+        {
+          "name": "PowerShell",
+          "version": "7.5.0",
+          "purpose": "Windows shell"
+        },
+        {
+          "name": "NVM",
+          "version": "Available in Windows",
+          "purpose": "Node version management"
+        }
+      ]
+    },
+    "environment": {
+      "variables": {
+        "HOME": "/home/mokemoke0821",
+        "USER": "mokemoke0821",
+        "SHELL": "/bin/bash",
+        "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/PowerShell-7.5.0-win-x64:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Users/81902/AppData/Local/nvm:/mnt/c/nvm4w/nodejs:/mnt/c/Program Files/nodejs/:/mnt/c/Users/81902/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Program Files/PowerShell/7/:/mnt/c/Users/81902/AppData/Local/Programs/Python/Python313/Scripts/:/mnt/c/Users/81902/AppData/Local/Programs/Python/Python313/:/mnt/c/Users/81902/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/81902/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/81902/AppData/Local/nvm:/mnt/c/nvm4w/nodejs:/mnt/c/Users/81902/AppData/Roaming/npm:/mnt/c/Users/81902/AppData/Local/Programs/cursor/resources/app/bin:/snap/bin"
+      },
+      "paths": [
+        "/usr/local/sbin",
+        "/usr/local/bin",
+        "/usr/sbin",
+        "/usr/bin",
+        "/sbin",
+        "/bin",
+        "/usr/games",
+        "/usr/local/games",
+        "/usr/lib/wsl/lib",
+        "/mnt/c/Program Files/PowerShell-7.5.0-win-x64",
+        "/mnt/c/WINDOWS/system32",
+        "/mnt/c/Program Files/Git/cmd",
+        "/mnt/c/Program Files/Docker/Docker/resources/bin",
+        "/mnt/c/Users/81902/AppData/Local/nvm",
+        "/mnt/c/Program Files/nodejs/",
+        "/mnt/c/Users/81902/AppData/Local/Programs/cursor/resources/app/bin",
+        "/mnt/c/Users/81902/AppData/Local/Programs/Microsoft VS Code/bin",
+        "/mnt/c/Users/81902/AppData/Roaming/npm",
+        "/snap/bin"
+      ],
+      "config_files": [
+        "/home/mokemoke0821/.bashrc",
+        "/home/mokemoke0821/.profile",
+        "/home/mokemoke0821/.config/git",
+        "/home/mokemoke0821/.wsl-ip-address",
+        "/home/mokemoke0821/.claude.json"
+      ]
+    },
+    "directories": {
+      "home": "/home/mokemoke0821",
+      "projects": "/mnt/c/Users/81902/OneDrive/Documents/Cline/MCP",
+      "documents": "/mnt/c/Users/81902/OneDrive/Documents",
+      "downloads": "/mnt/c/Users/81902/Downloads",
+      "windows_home": "/mnt/c/Users/81902",
+      "wsl_root": "/",
+      "current_working": "/mnt/c/Users/81902/OneDrive/Documents/Cline/MCP"
+    },
+    "usage": {
+      "primary_purpose": "Development environment for MCP (Model Context Protocol) projects",
+      "frequent_tasks": [
+        "Claude AI integration development",
+        "TypeScript/JavaScript development",
+        "Python development",
+        "Web research and automation",
+        "File management and analysis"
+      ],
+      "external_services": [
+        "GitHub",
+        "npm registry",
+        "Claude AI",
+        "OneDrive (file sync)",
+        "Docker (via Windows)"
+      ]
+    },
+    "project_context": {
+      "mcp_projects": [
+        "claude-bridge-mcp",
+        "deep-think-commander",
+        "enhanced-file-commander",
+        "powershell-commander",
+        "web-research-commander"
+      ],
+      "sdks": [
+        "java-sdk",
+        "python-sdk",
+        "typescript-sdk"
+      ],
+      "configuration_files": [
+        "settings.json",
+        ".claude directory"
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "project_type": "claude-github-integration",
+  "local_claude": {
+    "enabled": true,
+    "command": "claude-code"
+  },
+  "github_integration": {
+    "enabled": true,
+    "workflow_file": ".github/workflows/claude.yml",
+    "trigger": "@claude"
+  },
+  "sync": {
+    "auto_sync": true,
+    "sync_interval": "on_commit"
+  }
+}

@@ -1,0 +1,72 @@
+
+          {
+            name: 'causeEffectAnalysis',
+            description: '原因-結果分析（フィッシュボーン/特性要因図）を実施します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                problem: {
+                  type: 'string',
+                  description: '分析する問題'
+                }
+              },
+              required: ['problem']
+            }
+          },
+          {
+            name: 'mindMap',
+            description: 'マインドマップの基本構造を生成します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                centralTopic: {
+                  type: 'string',
+                  description: 'マインドマップの中心トピック'
+                }
+              },
+              required: ['centralTopic']
+            }
+          },
+          {
+            name: 'socraticQuestioning',
+            description: 'ソクラテス的問答法のフレームワークを適用します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                belief: {
+                  type: 'string',
+                  description: '検証する信念や主張'
+                }
+              },
+              required: ['belief']
+            }
+          },
+          {
+            name: 'sixThinkingHats',
+            description: 'シックスシンキングハット法による多角的思考を促進します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                topic: {
+                  type: 'string',
+                  description: '考察するトピック'
+                }
+              },
+              required: ['topic']
+            }
+          },
+          // 思考チェーンツール
+          {
+            name: 'problemAnalysisChain',
+            description: '問題を体系的に分析する思考チェーンを実行します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                problem: {
+                  type: 'string',
+                  description: '分析する問題'
+                }
+              },
+              required: ['problem']
+            }
+          },

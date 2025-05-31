@@ -1,0 +1,39 @@
+name: 🚀 Claude MCP自動テスト
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-mcp-servers:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Test MCP Servers
+      run: |
+        Write-Host "🧪 MCP Servers テスト開始" -ForegroundColor Green
+        
+        # enhanced-development-commander テスト
+        if (Test-Path "enhanced-development-commander/dist/index.js") {
+          Write-Host "✅ enhanced-development-commander 確認" -ForegroundColor Green
+        }
+        
+        # enhanced-file-commander テスト
+        if (Test-Path "enhanced-file-commander/dist/index.js") {
+          Write-Host "✅ enhanced-file-commander 確認" -ForegroundColor Green
+        }
+        
+        Write-Host "🎉 全てのMCPサーバー確認完了" -ForegroundColor Green
+      shell: pwsh

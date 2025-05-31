@@ -1,0 +1,68 @@
+  
+  // SWOT分析ツール
+  async handleSwotAnalysis(args, sessionId) {
+    const { topic } = args;
+    
+    if (!topic) {
+      throw new Error('トピックが指定されていません');
+    }
+    
+    try {
+      const swot = ThinkingTools.applySWOT(topic);
+      return this.aiThinkingEnhancer.enhanceResult('swotAnalysis', swot, args, sessionId);
+    } catch (error) {
+      debug.error(`SWOT分析エラー: ${error.message}`, { topic, error });
+      throw new Error(`SWOT分析エラー: ${error.message}`);
+    }
+  }
+  
+  // 5W1H分析ツール
+  async handle5W1H(args, sessionId) {
+    const { topic } = args;
+    
+    if (!topic) {
+      throw new Error('トピックが指定されていません');
+    }
+    
+    try {
+      const analysis5W1H = ThinkingTools.apply5W1H(topic);
+      return this.aiThinkingEnhancer.enhanceResult('analysis5W1H', analysis5W1H, args, sessionId);
+    } catch (error) {
+      debug.error(`5W1H分析エラー: ${error.message}`, { topic, error });
+      throw new Error(`5W1H分析エラー: ${error.message}`);
+    }
+  }
+  
+  // 原因-結果分析ツール
+  async handleCauseEffect(args, sessionId) {
+    const { problem } = args;
+    
+    if (!problem) {
+      throw new Error('問題が指定されていません');
+    }
+    
+    try {
+      const causeEffect = ThinkingTools.applyCauseEffectAnalysis(problem);
+      return this.aiThinkingEnhancer.enhanceResult('causeEffectAnalysis', causeEffect, args, sessionId);
+    } catch (error) {
+      debug.error(`原因-結果分析エラー: ${error.message}`, { problem, error });
+      throw new Error(`原因-結果分析エラー: ${error.message}`);
+    }
+  }
+  
+  // マインドマップツール
+  async handleMindMap(args, sessionId) {
+    const { centralTopic } = args;
+    
+    if (!centralTopic) {
+      throw new Error('中心トピックが指定されていません');
+    }
+    
+    try {
+      const mindMap = ThinkingTools.generateMindMap(centralTopic);
+      return this.aiThinkingEnhancer.enhanceResult('mindMap', mindMap, args, sessionId);
+    } catch (error) {
+      debug.error(`マインドマップ生成エラー: ${error.message}`, { centralTopic, error });
+      throw new Error(`マインドマップ生成エラー: ${error.message}`);
+    }
+  }

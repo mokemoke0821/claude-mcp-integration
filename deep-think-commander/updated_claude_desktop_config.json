@@ -1,0 +1,86 @@
+{
+  "mcpServers": {
+    "mcp_web_research_typescript": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/web-research-commander/dist/examples/typescript-sdk-example.js"
+      ],
+      "env": {
+        "PORT": "3007"
+      },
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "enhanced_web_research": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/web-research-commander/simple-web-research.js"
+      ],
+      "env": {
+        "PORT": "3008"
+      },
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "enhanced_file_commander": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/enhanced-file-commander/src/simple-server.js"
+      ],
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "file-commander": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/Desktop/claude_mcp_project/mcp/file-commander/build/index.js"
+      ],
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "claude-code-commander": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/Desktop/claude_mcp_project/mcp/claude-code-commander/build/enhanced-esm.js"
+      ],
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "powershell-commander": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/powershell-commander/src/index.js"
+      ],
+      "autoStart": true,
+      "restartOnFailure": true
+    },
+    "deep_think": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/deep-think-commander/enhanced-index-v4.js"
+      ],
+      "env": {
+        "DEBUG": "deep-think:*",
+        "NODE_ENV": "production"
+      },
+      "autoStart": true,
+      "restartOnFailure": true
+    }
+  },
+  "mcp": {
+    "webResearch": {
+      "enabled": true,
+      "maxResults": 5,
+      "timeout": 30000,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+  },
+  "mcpSettingsFile": "C:/Users/81902/AppData/Roaming/Claude Desktop/cline_mcp_settings.json",
+  "externalServices": {
+    "webResearch": {
+      "enabled": true,
+      "timeout": 30000,
+      "endpoint": "http://localhost:3008/api/search"
+    }
+  }
+}

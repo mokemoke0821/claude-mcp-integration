@@ -1,0 +1,64 @@
+  
+  // 創造的思考チェーンツール
+  async handleCreativeThinkingChain(args, sessionId) {
+    const { innovationChallenge } = args;
+    
+    if (!innovationChallenge) {
+      throw new Error('革新の課題が指定されていません');
+    }
+    
+    try {
+      const creativeChain = ThoughtChain.creativeThinkingChain(innovationChallenge);
+      return this.aiThinkingEnhancer.enhanceResult('creativeThinkingChain', creativeChain, args, sessionId);
+    } catch (error) {
+      debug.error(`創造的思考チェーンエラー: ${error.message}`, { innovationChallenge, error });
+      throw new Error(`創造的思考チェーンエラー: ${error.message}`);
+    }
+  }
+  
+  // 批判的思考チェーンツール
+  async handleCriticalThinkingChain(args, sessionId) {
+    const { claim } = args;
+    
+    if (!claim) {
+      throw new Error('評価する主張が指定されていません');
+    }
+    
+    try {
+      const criticalChain = ThoughtChain.criticalThinkingChain(claim);
+      return this.aiThinkingEnhancer.enhanceResult('criticalThinkingChain', criticalChain, args, sessionId);
+    } catch (error) {
+      debug.error(`批判的思考チェーンエラー: ${error.message}`, { claim, error });
+      throw new Error(`批判的思考チェーンエラー: ${error.message}`);
+    }
+  }
+}
+
+/**
+ * カスタマイズ可能な思考フレームワーク管理
+ */
+class ThinkingFrameworkManager {
+  constructor() {
+    this.frameworks = {
+      'technical-analysis': {
+        name: '技術分析フレームワーク',
+        description: '技術的な問題に対する体系的な分析プロセス',
+        stages: [
+          {
+            name: '問題の定義と分解',
+            tools: ['decompose', 'causeEffectAnalysis']
+          },
+          {
+            name: '多角的検討と仮説生成',
+            tools: ['generateHypotheses', 'perspective']
+          },
+          {
+            name: '論理的評価と検証',
+            tools: ['logicalReasoning', 'evaluateEvidence']
+          },
+          {
+            name: '実装戦略と最適化',
+            tools: ['decisionMatrix', 'scenarioPlanning']
+          }
+        ]
+      },

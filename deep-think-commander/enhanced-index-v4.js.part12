@@ -1,0 +1,68 @@
+  
+  // 仮説生成ツール
+  async handleGenerateHypotheses(args, sessionId) {
+    const { theme } = args;
+    
+    if (!theme) {
+      throw new Error('テーマが指定されていません');
+    }
+    
+    try {
+      const hypotheses = ThinkingUtils.generateHypotheses(theme);
+      return this.aiThinkingEnhancer.enhanceResult('generateHypotheses', { theme, hypotheses }, args, sessionId);
+    } catch (error) {
+      debug.error(`仮説生成エラー: ${error.message}`, { theme, error });
+      throw new Error(`仮説生成エラー: ${error.message}`);
+    }
+  }
+  
+  // 証拠評価ツール
+  async handleEvaluateEvidence(args, sessionId) {
+    const { hypothesis } = args;
+    
+    if (!hypothesis) {
+      throw new Error('仮説が指定されていません');
+    }
+    
+    try {
+      const evidenceEvaluation = ThinkingUtils.evaluateEvidence(hypothesis);
+      return this.aiThinkingEnhancer.enhanceResult('evaluateEvidence', evidenceEvaluation, args, sessionId);
+    } catch (error) {
+      debug.error(`証拠評価エラー: ${error.message}`, { hypothesis, error });
+      throw new Error(`証拠評価エラー: ${error.message}`);
+    }
+  }
+  
+  // 論理的推論ツール
+  async handleLogicalReasoning(args, sessionId) {
+    const { theme } = args;
+    
+    if (!theme) {
+      throw new Error('テーマが指定されていません');
+    }
+    
+    try {
+      const reasoning = ThinkingUtils.applyLogicalReasoning(theme);
+      return this.aiThinkingEnhancer.enhanceResult('logicalReasoning', reasoning, args, sessionId);
+    } catch (error) {
+      debug.error(`論理的推論エラー: ${error.message}`, { theme, error });
+      throw new Error(`論理的推論エラー: ${error.message}`);
+    }
+  }
+  
+  // メタ認知ツール
+  async handleMetaCognition(args, sessionId) {
+    const { thinkingProcess } = args;
+    
+    if (!thinkingProcess) {
+      throw new Error('思考プロセスが指定されていません');
+    }
+    
+    try {
+      const metaCognition = ThinkingUtils.applyMetaCognition(thinkingProcess);
+      return this.aiThinkingEnhancer.enhanceResult('metaCognition', metaCognition, args, sessionId);
+    } catch (error) {
+      debug.error(`メタ認知エラー: ${error.message}`, { thinkingProcess, error });
+      throw new Error(`メタ認知エラー: ${error.message}`);
+    }
+  }

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "deep_think": {
+      "command": "node",
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/deep-think-commander/enhanced-index-v3.js"
+      ],
+      "autoStart": true,
+      "restartOnFailure": true
+    }
+  }
+}

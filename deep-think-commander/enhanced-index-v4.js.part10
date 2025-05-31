@@ -1,0 +1,58 @@
+      
+      // AI強化を適用して具体的な分析内容を追加
+      const enhancedResult = this.aiThinkingEnhancer.enhanceResult('analyze', result, args, sessionId);
+      
+      return enhancedResult;
+    } catch (error) {
+      debug.error(`分析実行エラー: ${error.message}`, { theme, error });
+      throw new Error(`分析実行エラー: ${error.message}`);
+    }
+  }
+
+  async handleCounter(args, sessionId) {
+    const { hypothesis } = args;
+    
+    if (!hypothesis) {
+      throw new Error('仮説が指定されていません');
+    }
+
+    try {
+      // 仮説の証拠評価フレームワークを適用
+      const evidenceEvaluation = ThinkingUtils.evaluateEvidence(hypothesis);
+      
+      // 基本的な結果オブジェクト
+      const result = {
+        hypothesis: hypothesis,
+        counterArguments: [
+          {
+            point: "論理的批判",
+            description: "この仮説には以下の論理的欠陥があります",
+            details: evidenceEvaluation.evidenceFramework.counterEvidence.map(item => item.question)
+          },
+          {
+            point: "代替説明",
+            description: "同じ現象を説明できる代替仮説",
+            examples: ["代替説明1: 別の因果関係の可能性", "代替説明2: より単純な説明の可能性"]
+          },
+          {
+            point: "限界と境界条件",
+            description: "この仮説が適用できない条件や状況",
+            conditions: ["適用限界1: 特定の条件下では当てはまらない", "適用限界2: 例外的なケースの存在"]
+          }
+        ],
+        refinementSuggestions: [
+          "仮説の範囲を明確に限定する",
+          "前提条件を明示的に示す",
+          "反証可能な形に仮説を再構成する"
+        ]
+      };
+      
+      // AI強化を適用して具体的な反論内容を追加
+      const enhancedResult = this.aiThinkingEnhancer.enhanceResult('counter', result, args, sessionId);
+      
+      return enhancedResult;
+    } catch (error) {
+      debug.error(`反証実行エラー: ${error.message}`, { hypothesis, error });
+      throw new Error(`反証実行エラー: ${error.message}`);
+    }
+  }

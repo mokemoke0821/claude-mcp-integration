@@ -1,0 +1,58 @@
+    
+    // テンプレート内の変数を置換
+    return template.replace(/\{\{(\w+)(?:\.\w+)*\}\}/g, (match, key) => {
+      // ネストしたプロパティへのアクセスをサポート（例: result.strengths.specific[0]）
+      const props = key.split('.');
+      let value = replacements;
+      
+      for (const prop of props) {
+        if (value === null || value === undefined) return match;
+        
+        // 配列アクセスのサポート（例: strengths.specific[0]）
+        const arrayMatch = prop.match(/(\w+)\[(\d+)\]/);
+        if (arrayMatch) {
+          const arrayProp = arrayMatch[1];
+          const index = parseInt(arrayMatch[2]);
+          value = value[arrayProp]?.[index];
+        } else {
+          value = value[prop];
+        }
+      }
+      
+      return value !== undefined ? value : match;
+    });
+  }
+  
+  // 基本的な思考分析機能
+  async handleAnalyze(args, sessionId) {
+    const { theme } = args;
+    
+    if (!theme) {
+      throw new Error('テーマが指定されていません');
+    }
+
+    debug.info(`分析実行: "${theme}"`);
+    
+    try {
+      // テーマの分解
+      const decomposition = ThinkingUtils.decomposeTheme(theme);
+      
+      // 仮説生成
+      const hypotheses = ThinkingUtils.generateHypotheses(theme);
+      
+      // 複数の視点からの分析
+      const perspectives = ThinkingUtils.thinkFromMultiplePerspectives(theme);
+      
+      // 基本的な結果オブジェクト
+      const result = {
+        theme: theme,
+        decomposition: decomposition,
+        mainHypothesis: hypotheses[0],
+        alternativeHypotheses: hypotheses.slice(1, 3),
+        keyPerspectives: perspectives.perspectives.slice(0, 3),
+        nextSteps: [
+          "仮説の証拠評価を行う（evaluateEvidenceツールを使用）",
+          "論理的推論プロセスを適用する（logicalReasoningツールを使用）",
+          "代替視点からさらに分析を深める（perspectiveツールを使用）"
+        ]
+      };

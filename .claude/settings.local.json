@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(timeout:*)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": []
+  }
+}

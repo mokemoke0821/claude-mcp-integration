@@ -1,0 +1,54 @@
+
+// Process stdin data
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', async (chunk) => {
+  if (processingRequest) {
+    buffer += chunk.toString();
+    return;
+  }
+  
+  let data = buffer + chunk.toString();
+  buffer = '';
+  
+  if (data.trim() === '') return;
+  
+  try {
+    processingRequest = true;
+    
+    const request = JSON.parse(data);
+    log(`Request: ${request.method}, id: ${request.id}`);
+    
+    const response = await handleRequest(request);
+    process.stdout.write(JSON.stringify(response) + '\n');
+    
+    log(`Response sent for method: ${request.method}, id: ${request.id}`);
+  } catch (error) {
+    log(`Error: ${error.message}`);
+    const errorResponse = {
+      jsonrpc: '2.0',
+      id: null,
+      error: {
+        code: -32700,
+        message: 'Parse error',
+        data: error.message
+      }
+    };
+    process.stdout.write(JSON.stringify(errorResponse) + '\n');
+  } finally {
+    processingRequest = false;
+    if (buffer.trim() !== '') {
+      const remainingData = buffer;
+      buffer = '';
+      process.stdin.emit('data', remainingData);
+    }
+  }
+});
+
+// Error handling
+process.stdin.on('error', error => log(`stdin error: ${error.message}`));
+process.stdout.on('error', error => log(`stdout error: ${error.message}`));
+process.on('uncaughtException', error => log(`Uncaught exception: ${error.message}`));
+process.on('unhandledRejection', error => log(`Unhandled rejection: ${error instanceof Error ? error.message : String(error)}`));
+
+// Start server
+log('Simple Deep Think Commander started');

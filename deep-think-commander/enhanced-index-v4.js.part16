@@ -1,0 +1,67 @@
+      'business-strategy': {
+        name: 'ビジネス戦略フレームワーク',
+        description: 'ビジネス戦略策定のための思考プロセス',
+        stages: [
+          {
+            name: '状況分析と市場理解',
+            tools: ['swotAnalysis', 'analysis5W1H']
+          },
+          {
+            name: '戦略的選択肢の探索',
+            tools: ['dialecticalThinking', 'sixThinkingHats']
+          },
+          {
+            name: '意思決定と優先順位付け',
+            tools: ['decisionMatrix', 'strategicThinkingChain']
+          },
+          {
+            name: '実行計画と適応戦略',
+            tools: ['mentalModels', 'mindMap']
+          }
+        ]
+      }
+    };
+  }
+
+  /**
+   * 登録されているフレームワーク一覧を取得
+   */
+  getFrameworks() {
+    return Object.keys(this.frameworks).map(key => ({
+      id: key,
+      name: this.frameworks[key].name,
+      description: this.frameworks[key].description
+    }));
+  }
+
+  /**
+   * 特定のフレームワークの詳細を取得
+   */
+  getFrameworkDetails(frameworkId) {
+    return this.frameworks[frameworkId];
+  }
+}
+
+// サーバーインスタンスを作成して実行
+const server = new EnhancedDeepThinkCommanderServer();
+server.run = async function() {
+  debug.info('Deep Think Commander V4サーバーの起動を開始');
+  
+  const transport = new StdioServerTransport();
+  await this.server.connect(transport);
+  
+  debug.info('Deep Think Commander V4サーバーが起動しました');
+  console.error('Deep Think Commander V4 MCPサーバーが起動しました。');
+  console.error('機能強化: テーマ固有の分析, 文脈認識プロンプト, AI思考強化, ツール連携の緊密化');
+};
+
+// サーバー実行
+if (require.main === module) {
+  server.run().catch(err => {
+    debug.error('サーバー起動エラー', { error: err });
+    console.error('サーバー起動エラー:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = EnhancedDeepThinkCommanderServer;

@@ -1,0 +1,76 @@
+
+        
+        // 対応するツール処理を実行
+        switch (toolName) {
+          case 'analyze':
+            result = await this.handleAnalyze(args, sessionId);
+            break;
+          case 'counter':
+            result = await this.handleCounter(args, sessionId);
+            break;
+          case 'perspective':
+            result = await this.handlePerspective(args, sessionId);
+            break;
+          case 'decompose':
+            result = await this.handleDecompose(args, sessionId);
+            break;
+          case 'generateHypotheses':
+            result = await this.handleGenerateHypotheses(args, sessionId);
+            break;
+          case 'evaluateEvidence':
+            result = await this.handleEvaluateEvidence(args, sessionId);
+            break;
+          case 'logicalReasoning':
+            result = await this.handleLogicalReasoning(args, sessionId);
+            break;
+          case 'metaCognition':
+            result = await this.handleMetaCognition(args, sessionId);
+            break;
+          case 'swotAnalysis':
+            result = await this.handleSwotAnalysis(args, sessionId);
+            break;
+          case 'analysis5W1H':
+            result = await this.handle5W1H(args, sessionId);
+            break;
+          case 'causeEffectAnalysis':
+            result = await this.handleCauseEffect(args, sessionId);
+            break;
+          case 'mindMap':
+            result = await this.handleMindMap(args, sessionId);
+            break;
+          case 'socraticQuestioning':
+            result = await this.handleSocraticQuestioning(args, sessionId);
+            break;
+          case 'sixThinkingHats':
+            result = await this.handleSixThinkingHats(args, sessionId);
+            break;
+          case 'problemAnalysisChain':
+            result = await this.handleProblemAnalysisChain(args, sessionId);
+            break;
+          case 'strategicThinkingChain':
+            result = await this.handleStrategicThinkingChain(args, sessionId);
+            break;
+          case 'creativeThinkingChain':
+            result = await this.handleCreativeThinkingChain(args, sessionId);
+            break;
+          case 'criticalThinkingChain':
+            result = await this.handleCriticalThinkingChain(args, sessionId);
+            break;
+          default:
+            throw new McpError(
+              ErrorCode.MethodNotFound,
+              `未知のツール: ${toolName}`
+            );
+        }
+        
+        // 会話文脈に合わせたプロンプトテンプレートを適用
+        const responseText = this.applyContextPromptTemplate(toolName, args, result);
+        
+        return {
+          content: [
+            {
+              type: 'text',
+              text: responseText || JSON.stringify(result, null, 2),
+            },
+          ],
+        };

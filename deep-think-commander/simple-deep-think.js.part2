@@ -1,0 +1,214 @@
+
+// Handle JSON-RPC request
+async function handleRequest(request) {
+  try {
+    if (request.method === 'initialize') {
+      return {
+        jsonrpc: '2.0',
+        id: request.id,
+        result: {
+          serverInfo: {
+            name: 'deep-think-commander',
+            version: '1.0.0',
+            capabilities: {
+              tools: true
+            }
+          }
+        }
+      };
+    }
+    
+    else if (request.method === 'tools/list' || request.method === 'list_tools') {
+      return {
+        jsonrpc: '2.0',
+        id: request.id,
+        result: {
+          tools: [
+            {
+              name: 'analyze',
+              description: 'Analyze a theme and generate hypotheses',
+              inputSchema: {
+                type: 'object',
+                properties: {
+                  theme: { type: 'string', description: 'Theme to analyze' }
+                },
+                required: ['theme']
+              }
+            },
+            {
+              name: 'counter',
+              description: 'Generate counterarguments for a hypothesis',
+              inputSchema: {
+                type: 'object',
+                properties: {
+                  hypothesis: { type: 'string', description: 'Hypothesis to critique' }
+                },
+                required: ['hypothesis']
+              }
+            },
+            {
+              name: 'perspective',
+              description: 'Explore multiple perspectives on a theme',
+              inputSchema: {
+                type: 'object',
+                properties: {
+                  theme: { type: 'string', description: 'Theme to explore' }
+                },
+                required: ['theme']
+              }
+            },
+            {
+              name: 'swotAnalysis',
+              description: 'Conduct a SWOT analysis on a topic',
+              inputSchema: {
+                type: 'object',
+                properties: {
+                  topic: { type: 'string', description: 'Topic for SWOT analysis' }
+                },
+                required: ['topic']
+              }
+            },
+            {
+              name: 'analysis5W1H',
+              description: 'Analyze a topic using the 5W1H framework',
+              inputSchema: {
+                type: 'object',
+                properties: {
+                  topic: { type: 'string', description: 'Topic for 5W1H analysis' }
+                },
+                required: ['topic']
+              }
+            }
+          ]
+        }
+      };
+    }
+    
+    else if (request.method === 'tools/call' || request.method === 'call_tool') {
+      const { name, arguments: args } = request.params;
+      
+      if (name === 'analyze') {
+        const { theme } = args;
+        log(`Analyzing theme: ${theme}`);
+        
+        const result = thinkingTools.analyze(theme);
+        
+        return {
+          jsonrpc: '2.0',
+          id: request.id,
+          result: {
+            content: [{ 
+              type: 'text',
+              text: JSON.stringify(result, null, 2)
+            }]
+          }
+        };
+      }
+      
+      else if (name === 'counter') {
+        const { hypothesis } = args;
+        log(`Generating counterarguments for: ${hypothesis}`);
+        
+        const result = thinkingTools.counter(hypothesis);
+        
+        return {
+          jsonrpc: '2.0',
+          id: request.id,
+          result: {
+            content: [{ 
+              type: 'text',
+              text: JSON.stringify(result, null, 2)
+            }]
+          }
+        };
+      }
+      
+      else if (name === 'perspective') {
+        const { theme } = args;
+        log(`Exploring perspectives on: ${theme}`);
+        
+        const result = thinkingTools.perspective(theme);
+        
+        return {
+          jsonrpc: '2.0',
+          id: request.id,
+          result: {
+            content: [{ 
+              type: 'text',
+              text: JSON.stringify(result, null, 2)
+            }]
+          }
+        };
+      }
+      
+      else if (name === 'swotAnalysis') {
+        const { topic } = args;
+        log(`Performing SWOT analysis on: ${topic}`);
+        
+        const result = thinkingTools.swotAnalysis(topic);
+        
+        return {
+          jsonrpc: '2.0',
+          id: request.id,
+          result: {
+            content: [{ 
+              type: 'text',
+              text: JSON.stringify(result, null, 2)
+            }]
+          }
+        };
+      }
+      
+      else if (name === 'analysis5W1H') {
+        const { topic } = args;
+        log(`Performing 5W1H analysis on: ${topic}`);
+        
+        const result = thinkingTools.analysis5W1H(topic);
+        
+        return {
+          jsonrpc: '2.0',
+          id: request.id,
+          result: {
+            content: [{ 
+              type: 'text',
+              text: JSON.stringify(result, null, 2)
+            }]
+          }
+        };
+      }
+      
+      else {
+        return {
+          jsonrpc: '2.0',
+          id: request.id,
+          error: {
+            code: -32601,
+            message: `Tool not found: ${name}`
+          }
+        };
+      }
+    }
+    
+    else {
+      log(`Unknown method: ${request.method}`);
+      return {
+        jsonrpc: '2.0',
+        id: request.id,
+        error: {
+          code: -32601,
+          message: `Method not found: ${request.method}`
+        }
+      };
+    }
+  } catch (error) {
+    log(`Error handling request: ${error.message}`);
+    return {
+      jsonrpc: '2.0',
+      id: request.id,
+      error: {
+        code: -32603,
+        message: `Internal error: ${error.message}`
+      }
+    };
+  }
+}

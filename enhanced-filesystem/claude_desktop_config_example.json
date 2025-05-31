@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "enhanced-filesystem-security": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\81902\\OneDrive\\Documents\\Cline\\MCP\\enhanced-filesystem\\build\\index.js"
+      ],
+      "env": {}
+    }
+  }
+}

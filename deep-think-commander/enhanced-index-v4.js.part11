@@ -1,0 +1,59 @@
+
+
+  async handlePerspective(args, sessionId) {
+    const { theme } = args;
+    
+    if (!theme) {
+      throw new Error('テーマが指定されていません');
+    }
+
+    try {
+      // 複数の視点から思考
+      const multiPerspectives = ThinkingUtils.thinkFromMultiplePerspectives(theme);
+      
+      // 基本的な結果オブジェクト
+      const result = {
+        theme: theme,
+        perspectives: multiPerspectives.perspectives.map(p => ({
+          name: p.name,
+          analysis: `${p.approach} - ${p.keyQuestions[0]}`,
+          insights: `この視点からの洞察: ${p.keyQuestions[1]}`
+        })),
+        synthesis: {
+          commonPoints: "複数の視点に共通する重要なポイント",
+          tensions: "異なる視点間の緊張関係や対立点",
+          integratedView: "異なる視点を統合した包括的理解"
+        },
+        applicationSuggestions: [
+          "特定の視点をさらに深く探索するために使用できるツール",
+          "異なる視点間の対話を促進する方法",
+          "状況に応じた最適な視点の選択基準"
+        ]
+      };
+      
+      // AI強化を適用して具体的な視点分析内容を追加
+      const enhancedResult = this.aiThinkingEnhancer.enhanceResult('perspective', result, args, sessionId);
+      
+      return enhancedResult;
+    } catch (error) {
+      debug.error(`視点分析エラー: ${error.message}`, { theme, error });
+      throw new Error(`視点分析エラー: ${error.message}`);
+    }
+  }
+  
+  // 問題分解ツール
+  async handleDecompose(args, sessionId) {
+    const { theme } = args;
+    
+    if (!theme) {
+      throw new Error('テーマが指定されていません');
+    }
+    
+    try {
+      const decomposition = ThinkingUtils.decomposeTheme(theme);
+      return this.aiThinkingEnhancer.enhanceResult('decompose', decomposition, args, sessionId);
+    } catch (error) {
+      debug.error(`問題分解エラー: ${error.message}`, { theme, error });
+      throw new Error(`問題分解エラー: ${error.message}`);
+    }
+  }

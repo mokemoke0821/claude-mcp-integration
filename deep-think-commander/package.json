@@ -1,0 +1,27 @@
+{
+  "name": "deep-think-commander",
+  "version": "2.0.0",
+  "description": "Claude Desktopの思考能力を拡張するMCPサーバー",
+  "main": "enhanced-index.js",
+  "scripts": {
+    "start": "node enhanced-index.js",
+    "dev": "NODE_ENV=development DEBUG=deep-think:* node enhanced-index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "claude",
+    "mcp",
+    "thinking",
+    "reasoning",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "debug": "^4.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  }
+}

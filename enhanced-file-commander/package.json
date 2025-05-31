@@ -1,0 +1,44 @@
+{
+  "name": "enhanced-file-commander",
+  "version": "1.0.0",
+  "description": "強化されたファイル操作機能を提供するMCPサーバー",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmitOnError false && node --eval \"import('fs').then(fs => fs.chmodSync('build/index.js', '755'))\"",
+    "start": "node build/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "mcp",
+    "file",
+    "commander",
+    "filesystem",
+    "visualization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "asciitree": "^1.0.2",
+    "chalk": "^5.3.0",
+    "cli-table3": "^0.6.3",
+    "dayjs": "^1.11.10",
+    "file-type": "^18.7.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "image-size": "^1.1.1",
+    "mime-types": "^2.1.35",
+    "picomatch": "^3.0.1",
+    "sharp": "^0.33.2",
+    "systeminformation": "^5.21.22",
+    "tree-node-cli": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^20.8.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

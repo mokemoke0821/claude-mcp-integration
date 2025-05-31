@@ -1,0 +1,10 @@
+{
+  "deep-think-commander-v3": {
+    "command": "node",
+    "args": ["C:/Users/81902/OneDrive/Documents/Cline/MCP/deep-think-commander/enhanced-index-v3.js"],
+    "env": {
+      "DEBUG": "deep-think:*",
+      "NODE_ENV": "production"
+    }
+  }
+}

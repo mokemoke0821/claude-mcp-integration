@@ -1,0 +1,68 @@
+  
+  // ソクラテス的問答法ツール
+  async handleSocraticQuestioning(args, sessionId) {
+    const { belief } = args;
+    
+    if (!belief) {
+      throw new Error('信念や主張が指定されていません');
+    }
+    
+    try {
+      const socratic = ThinkingTools.applySocraticQuestioning(belief);
+      return this.aiThinkingEnhancer.enhanceResult('socraticQuestioning', socratic, args, sessionId);
+    } catch (error) {
+      debug.error(`ソクラテス的問答法エラー: ${error.message}`, { belief, error });
+      throw new Error(`ソクラテス的問答法エラー: ${error.message}`);
+    }
+  }
+  
+  // シックスシンキングハット法ツール
+  async handleSixThinkingHats(args, sessionId) {
+    const { topic } = args;
+    
+    if (!topic) {
+      throw new Error('トピックが指定されていません');
+    }
+    
+    try {
+      const sixHats = ThinkingTools.applySixThinkingHats(topic);
+      return this.aiThinkingEnhancer.enhanceResult('sixThinkingHats', sixHats, args, sessionId);
+    } catch (error) {
+      debug.error(`シックスシンキングハット法エラー: ${error.message}`, { topic, error });
+      throw new Error(`シックスシンキングハット法エラー: ${error.message}`);
+    }
+  }
+  
+  // 問題分析チェーンツール
+  async handleProblemAnalysisChain(args, sessionId) {
+    const { problem } = args;
+    
+    if (!problem) {
+      throw new Error('問題が指定されていません');
+    }
+    
+    try {
+      const analysisChain = ThoughtChain.problemAnalysisChain(problem);
+      return this.aiThinkingEnhancer.enhanceResult('problemAnalysisChain', analysisChain, args, sessionId);
+    } catch (error) {
+      debug.error(`問題分析チェーンエラー: ${error.message}`, { problem, error });
+      throw new Error(`問題分析チェーンエラー: ${error.message}`);
+    }
+  }
+  
+  // 戦略思考チェーンツール
+  async handleStrategicThinkingChain(args, sessionId) {
+    const { strategicTopic } = args;
+    
+    if (!strategicTopic) {
+      throw new Error('戦略的トピックが指定されていません');
+    }
+    
+    try {
+      const strategicChain = ThoughtChain.strategicThinkingChain(strategicTopic);
+      return this.aiThinkingEnhancer.enhanceResult('strategicThinkingChain', strategicChain, args, sessionId);
+    } catch (error) {
+      debug.error(`戦略思考チェーンエラー: ${error.message}`, { strategicTopic, error });
+      throw new Error(`戦略思考チェーンエラー: ${error.message}`);
+    }
+  }

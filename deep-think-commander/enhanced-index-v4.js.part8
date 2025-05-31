@@ -1,0 +1,79 @@
+
+      } catch (error) {
+        debug.error(`ツール "${toolName}" の実行中にエラーが発生`, { error });
+        console.error(`ツール ${toolName} の実行中にエラーが発生`, error);
+        
+        let errorMessage = `エラーが発生しました: ${error.message || String(error)}`;
+        
+        return {
+          content: [
+            {
+              type: 'text',
+              text: errorMessage,
+            },
+          ],
+          isError: true,
+        };
+      }
+    });
+    
+    debug.info('ツールハンドラーの設定を完了');
+  }
+
+  // セッションの初期化
+  initializeSession(sessionId) {
+    this.sessions.set(sessionId, {
+      id: sessionId,
+      createdAt: new Date(),
+      history: [],
+      context: {},
+      activeFramework: null
+    });
+  }
+  
+  // 会話文脈に合わせたプロンプトテンプレートを適用
+  applyContextPromptTemplate(toolName, args, result) {
+    let template;
+    let replacements = { ...args };
+    
+    switch (toolName) {
+      case 'analyze':
+        template = ContextPromptTemplates.analyzeTemplate.responseTemplate;
+        replacements.result = JSON.stringify(result, null, 2);
+        break;
+      case 'counter':
+        template = ContextPromptTemplates.counterTemplate.responseTemplate;
+        replacements.result = JSON.stringify(result, null, 2);
+        break;
+      case 'perspective':
+        template = ContextPromptTemplates.perspectiveTemplate.responseTemplate;
+        replacements.result = JSON.stringify(result, null, 2);
+        break;
+      case 'swotAnalysis':
+        template = ContextPromptTemplates.swotTemplate.responseTemplate;
+        replacements.result = JSON.stringify(result, null, 2);
+        break;
+      case 'socraticQuestioning':
+        template = ContextPromptTemplates.socraticTemplate.responseTemplate;
+        replacements.result = JSON.stringify(result, null, 2);
+        break;
+      case 'sixThinkingHats':
+        template = ContextPromptTemplates.sixHatsTemplate.responseTemplate;
+        replacements.result = JSON.stringify(result, null, 2);
+        break;
+      case 'analysis5W1H':
+        template = ContextPromptTemplates.fiveWOneHTemplate.responseTemplate;
+        replacements.result = JSON.stringify(result, null, 2);
+        break;
+      case 'causeEffectAnalysis':
+        template = ContextPromptTemplates.causeEffectTemplate.responseTemplate;
+        replacements.result = JSON.stringify(result, null, 2);
+        break;
+      case 'mindMap':
+        template = ContextPromptTemplates.mindMapTemplate.responseTemplate;
+        replacements.result = JSON.stringify(result, null, 2);
+        break;
+      default:
+        // テンプレートがない場合は元の結果をJSON形式で返す
+        return JSON.stringify(result, null, 2);
+    }

@@ -1,0 +1,72 @@
+
+          {
+            name: 'evaluateEvidence',
+            description: '仮説の証拠を評価するフレームワークを提供します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                hypothesis: {
+                  type: 'string',
+                  description: '評価する仮説'
+                }
+              },
+              required: ['hypothesis']
+            }
+          },
+          {
+            name: 'logicalReasoning',
+            description: '論理的推論プロセスを適用します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                theme: {
+                  type: 'string',
+                  description: '推論を適用するテーマ'
+                }
+              },
+              required: ['theme']
+            }
+          },
+          {
+            name: 'metaCognition',
+            description: '思考プロセス自体を評価します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                thinkingProcess: {
+                  type: 'string',
+                  description: '評価する思考プロセスの説明'
+                }
+              },
+              required: ['thinkingProcess']
+            }
+          },
+          // 実践的思考フレームワーク
+          {
+            name: 'swotAnalysis',
+            description: 'SWOT分析（強み、弱み、機会、脅威）を実施します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                topic: {
+                  type: 'string',
+                  description: 'SWOT分析を行うトピック'
+                }
+              },
+              required: ['topic']
+            }
+          },
+          {
+            name: 'analysis5W1H',
+            description: '5W1H分析（What, Why, Who, When, Where, How）を実施します',
+            inputSchema: {
+              type: 'object',
+              properties: {
+                topic: {
+                  type: 'string',
+                  description: '5W1H分析を行うトピック'
+                }
+              },
+              required: ['topic']
+            }
+          },
