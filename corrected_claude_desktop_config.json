@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "enhanced-file-commander": {
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/enhanced-file-commander/build/index.js"
+      ],
+      "command": "node",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\81902\\OneDrive\\Documents\\Cline\\MCP"
+      ]
+    },
+    "enhanced-development-commander": {
+      "args": [
+        "C:/Users/81902/OneDrive/Documents/Cline/MCP/enhanced-development-commander/build/index.js"
+      ],
+      "command": "node",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

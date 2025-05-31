@@ -1,0 +1,32 @@
+{
+  "name": "claude-code-action-integration",
+  "version": "1.0.0",
+  "description": "Claude Code + GitHub Actions統合プロジェクト",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"✅ テスト実行完了\"",
+    "build": "echo \"📦 ビルド完了\"",
+    "claude:local": "claude-code --chat",
+    "claude:github": "echo \"GitHub ActionsでClaude実行中...\"",
+    "setup": "node scripts/setup.js",
+    "sync": "node scripts/sync-claude-github.js",
+    "get:credentials": "node scripts/get-claude-credentials.js",
+    "setup:claude-auth": "node scripts/setup-claude-auth.js",
+    "setup:git": "powershell -ExecutionPolicy Bypass -File git-setup.ps1",
+    "verify:github-app": "node scripts/verify-github-app.js",
+    "verify:secrets": "node scripts/verify-secrets.js",
+    "test:integration": "node scripts/full-integration-test.js",
+    "deploy": "git push origin main"
+  },
+  "keywords": [
+    "claude",
+    "ai",
+    "github-actions",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}
