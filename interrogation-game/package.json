@@ -1,0 +1,111 @@
+{
+  "name": "interrogation-game",
+  "version": "1.0.0",
+  "description": "取調室ライフバトルゲーム - Strategic Chat Battle Game with AI Suspect",
+  "type": "module",
+  "main": "public/electron.js",
+  "homepage": "./",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext ts,tsx --fix",
+    "lint:check": "eslint src --ext ts,tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx}\"",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:ui": "vitest --ui",
+    "security": "npm audit && npm audit fix",
+    "security:scan": "npm audit --audit-level=moderate",
+    "security:fix": "npm audit fix --force",
+    "build:analyze": "npm run build && npx webpack-bundle-analyzer dist/assets/*.js",
+    "clean": "rm -rf dist node_modules/.cache",
+    "pre-commit": "npm run lint:check && npm run typecheck && npm run test && npm run security:scan",
+    "quality:check": "npm run lint:check && npm run typecheck && npm run test:coverage && npm run security:scan",
+    "electron": "electron .",
+    "electron-dev": "cross-env ELECTRON_IS_DEV=true electron .",
+    "electron-build": "npm run build && electron-builder --win --publish=never",
+    "dist": "npm run build && electron-builder --win",
+    "dist:win": "npm run build && electron-builder --win --x64",
+    "max-plan:integration": "npm run quality:check && echo \"🚀 MAXプラン統合品質チェック完了\"",
+    "max-plan:auto-fix": "npm run lint && npm run format && npm run security:fix && echo \"🔧 MAXプラン自動修正完了\"",
+    "max-plan:full-check": "npm run clean && npm ci && npm run quality:check && npm run build && echo \"✅ MAXプラン完全品質保証完了\""
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "framer-motion": "^11.15.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.5",
+    "dompurify": "^3.2.0",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^18.3.17",
+    "@types/react-dom": "^18.3.5",
+    "@types/dompurify": "^3.2.0",
+    "@types/validator": "^13.12.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^3.2.1",
+    "@vitest/ui": "^3.2.1",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "electron": "^36.3.2",
+    "electron-builder": "^26.0.12",
+    "electron-is-dev": "^3.0.1",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "jsdom": "^25.0.1",
+    "postcss": "^8.5.1",
+    "prettier": "^3.4.2",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.1",
+    "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "build": {
+    "appId": "com.interrogationgame.app",
+    "productName": "Interrogation Game",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "public/electron.js"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Interrogation Game"
+    }
+  }
+}
